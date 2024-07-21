@@ -91,7 +91,7 @@
           >
           {{ product.name }}
            -
-            <mat-icon>move_to_inbox</mat-icon>
+            <mat-icon>texture</mat-icon>
             {{ product.stock }} Unidad(es)
           
           </mat-option
@@ -103,7 +103,9 @@
       </mat-form-field>
     </div>
     <div class="col-md-2 col-12 d-flex justify-content-end">
-      <button type="button" mat-button (click)="addProduct()">Agregar</button>
+      <button type="button" mat-button (click)="addProduct()" [disabled]="ctrlProduct.invalid">
+        <mat-icon class="icon-add" color="primary">add_circle_outline</mat-icon>
+      </button>
     </div>
     <div class="col-md-5 col-12">
     </div>
