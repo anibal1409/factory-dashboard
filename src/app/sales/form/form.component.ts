@@ -56,7 +56,7 @@ export class FormComponent implements OnInit, OnDestroy {
     id: 0,
     date: new Date().toDateString(),
     customerId: 0,
-    stage: StageSale.Pending,
+    stage: StageSale.Paid,
     saleProducts: [],
     total: 0,
     note: '',
@@ -190,7 +190,7 @@ export class FormComponent implements OnInit, OnDestroy {
       note: [null],
 
       date: [new Date(), [Validators.required]],
-      stage: [StageSale.Pending, [Validators.required]],
+      stage: [StageSale.Paid, [Validators.required]],
       id: [0],
 
       total: [{ value: 0, disabled: true }, [Validators.required]],
@@ -361,11 +361,13 @@ export class FormComponent implements OnInit, OnDestroy {
       this.sub$.add(
         this.entityService.findPatientByDocument$(customerDocument).subscribe(
           (customer) => {
-            if (customer?.id) {
+            if (customer && customer?.id) {
               this.form.patchValue({
                 customerId: customer.id,
                 customerName: customer.name,
               });
+            } else {
+              this.toastService.error('Cliente no encontrado.');
             }
           }
         )
