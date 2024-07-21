@@ -1,7 +1,11 @@
+.container-login {
+  background-image: linear-gradient(180deg, #F4A91E 45%, #FFF 90%);
+  height: 100vh;
+}
 .container {
   width: 100%;
   height: 100%;
-  background-color: #e8eaed;
+  // background-color: #e8eaed;
   display: flex;
   justify-content: center;
   align-items: center;
