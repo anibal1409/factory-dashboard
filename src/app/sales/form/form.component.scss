@@ -6,6 +6,19 @@
     width: 100%;
   }
 
+  .icon-add {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+
+  mat-form-field {
+    input {
+      color: var(--mdc-filled-text-field-input-text-color) !important;
+    }
+  }
+
 
   .content-exams {
     display: flex;
