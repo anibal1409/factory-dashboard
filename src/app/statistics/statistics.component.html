@@ -1,0 +1,99 @@
+
+<div class="content-cards d-flex align-items-center justify-content-start">
+  <mat-card>
+    <mat-card-header class="p-3">
+      <mat-card-title>Ventas realizadas en el mes</mat-card-title>
+      <mat-card-subtitle>
+        {{
+          statistics.sales
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header class="p-3">
+      <mat-card-title>Pedidos realizadas en el mes</mat-card-title>
+      <mat-card-subtitle>
+        {{
+          statistics.orders
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header class="p-3">
+      <mat-card-title>Productos ofrecidos</mat-card-title>
+      <mat-card-subtitle>
+        {{
+          statistics.products
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header class="p-3">
+      <mat-card-title>Clientes registrados</mat-card-title>
+      <mat-card-subtitle>
+        {{
+          statistics.customers
+        }}
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>
+
+<mat-form-field>
+  <mat-label>Mes</mat-label>
+  <mat-select [formControl]="ctrlMonth">
+    <mat-option *ngFor="let month of months" [value]="month.value">{{month.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="content-cards d-flex align-items-center justify-content-center">
+
+  <ng-container *ngIf="showGraphs; else empty">
+    <mat-card class="content-statistics">
+      <mat-card-header>
+        <mat-card-title>Categorías más vendidas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ngx-charts-pie-chart
+          [results]="typesExam"
+          [labels]="true"
+          [view]="[0, 400]"
+        ></ngx-charts-pie-chart>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="content-statistics">
+      <mat-card-header>
+        <mat-card-title>Productos más vendidos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ngx-charts-bar-vertical
+          [results]="exams"
+          [xAxisLabel]="'Tipo de exámen'"
+          [yAxisLabel]="''"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [view]="[0, 400]"
+        ></ngx-charts-bar-vertical>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-template #empty>
+    <div class="container-empty">
+      No hay datos para mostrar en el mes indicado.
+    </div>
+  </ng-template>
+</div>
+
+
+
+
+
